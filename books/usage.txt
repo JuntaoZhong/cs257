@@ -1,0 +1,17 @@
+#user guide for book search program books.py
+#created by Grace de Benedetti and Jimmy Zhong at Carleton College 
+#Under Prof Jeff Ondich: CS 257, Winter 2020
+
+--version -V 
+--help -h
+
+--search_title -st [String]
+Given a search string S, print a list of books whose titles contain S (case-insensitive).
+
+--search_author -sa [String]
+Given a search string S, print a list of authors whose names contain S (case-insensitive). For each such author, print a list of the author's books
+
+-find the set of author, and do search 
+
+--search_year -sy [int] [int]
+Given a range of years A to B, print a list of books published between years A and B, inclusive.
