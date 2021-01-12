@@ -2,19 +2,38 @@
 #created by Grace de Benedetti and Jimmy Zhong at Carleton College
 #Under Prof Jeff Ondich: CS 257, Winter 2020
 
---version -V
---help -h
+[--version -V]
 
---filter_title -t [String]
+[--help -h]
+
+[--outfile -o fileName]
+Print out entire file.
+
+[--filter_title -t titleString]
 Given a filter string S, filter out books whose titles do not contain S
 (case-insensitive). If no title is given, all book titles will be printed.
 
---filter_author -a [String]
+[--filter_author -a authorString]
 Given a filter string S, filter out authors whose names do not contain S
 (case-insensitive). For each such author, print a list of the author's books. If
 no author is given, all authors and their books will be printed.
 
---filter_year -y [int] [int]
+[--filter_year -y startYearInt [endYearInt]]
 Given a range of years A to B, filter out book titles that are not published
 between years A and B, inclusive. Default filter year is all years. If one year
 is given, only books published in that year will be printed.
+
+We also feature flag-combining
+
+[--filter_title --filter_author -ta "titleString" "authorString"]
+Given two filter strings T and S separated by double quotations, filter out all
+books whose titles do not contain T and filter out all authors whose names do
+not contain S. Print out all books that satisfy both conditions.
+
+[--filter_title --filter_year -ta "titleString" "startYearInt [endYearInt]"]
+Given one filter strings S and one year range T separated by double quotations,
+filter out all books whose titles do not contain S and all books not published
+within year range T. Print out all books that satisfy both conditions.
+
+If no argument is given, a message will be sent reading "one positional argument
+is required, please include at least one filter."
