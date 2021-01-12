@@ -1,5 +1,7 @@
 import argparse
 import csv
+import sys
+
 all_books = []
 def get_parsed_arguments():
     parser = argparse.ArgumentParser(description='')
@@ -9,12 +11,22 @@ def get_parsed_arguments():
     parsed_arguments = parser.parse_args()
     return parsed_arguments
 
-def filter_author(one_name):
+#if you want to search title, do filter_author_or_title("title", [your title])
+#if you want to search author, do filter_author_or_title("author", [your author])
+def filter_author_or_title(author_or_title, one_name):
     global all_books
     after_filter = []
-    for row in all_books:
-        if one_name.lower() in row[2].lower():
-            after_filter.append(row)
+    if author_or_title == "author":
+        for row in all_books:
+            if one_name.lower() in row[2].lower():
+                after_filter.append(row)
+    elif author_or_title == "title":
+        for row in all_books:
+            if one_name.lower() in row[0].lower():
+                after_filter.append(row)
+    else:
+        print("error! only 'author' and 'title' choice are allowed")
+    
     return after_filter
 
 def filter_single_year(a_year):
@@ -45,7 +57,8 @@ def main():
     with open('books.csv') as file:
         all_books = (list(csv.reader(file, skipinitialspace=True)))
     
-    all_books = filter_author("toni")
+    all_books = filter_author_or_title("author", "toni")
+    all_books = filter_author_or_title("title", "love")
     all_books = filter_year_range(0000, 2000)
     print(all_books)
     
