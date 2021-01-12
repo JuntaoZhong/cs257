@@ -1,17 +1,20 @@
 #user guide for book search program books.py
-#created by Grace de Benedetti and Jimmy Zhong at Carleton College 
+#created by Grace de Benedetti and Jimmy Zhong at Carleton College
 #Under Prof Jeff Ondich: CS 257, Winter 2020
 
---version -V 
+--version -V
 --help -h
 
---search_title -st [String]
-Given a search string S, print a list of books whose titles contain S (case-insensitive).
+--filter_title -t [String]
+Given a filter string S, filter out books whose titles do not contain S
+(case-insensitive). If no title is given, all book titles will be printed.
 
---search_author -sa [String]
-Given a search string S, print a list of authors whose names contain S (case-insensitive). For each such author, print a list of the author's books
+--filter_author -a [String]
+Given a filter string S, filter out authors whose names do not contain S
+(case-insensitive). For each such author, print a list of the author's books. If
+no author is given, all authors and their books will be printed.
 
--find the set of author, and do search 
-
---search_year -sy [int] [int]
-Given a range of years A to B, print a list of books published between years A and B, inclusive.
+--filter_year -y [int] [int]
+Given a range of years A to B, filter out book titles that are not published
+between years A and B, inclusive. Default filter year is all years. If one year
+is given, only books published in that year will be printed.
