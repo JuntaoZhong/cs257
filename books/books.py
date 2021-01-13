@@ -26,10 +26,11 @@ def filter_author_or_title(author_or_title, one_name):
                 after_filter.append(row)
     else:
         print("error! only 'author' and 'title' choice are allowed")
-    
+
     return after_filter
 
-def filter_single_year(a_year):
+def filter_single_year(a_year): #should we combine this with the below function? ex. if end_year != null
+                                #then we can do what the below function does, otherwise it will do what this one does?
     global all_books
     after_filter = []
     for row in all_books:
@@ -56,12 +57,12 @@ def main():
     global all_books
     with open('books.csv') as file:
         all_books = (list(csv.reader(file, skipinitialspace=True)))
-    
+
     all_books = filter_author_or_title("author", "toni")
     all_books = filter_author_or_title("title", "love")
     all_books = filter_year_range(0000, 2000)
     print(all_books)
-    
+
 
 if __name__ == '__main__':
     main()
