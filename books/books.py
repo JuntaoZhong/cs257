@@ -47,9 +47,9 @@ def filter_year_range(start_year, end_year):
     return after_filter
 
 def main():
-    # arguments = get_parsed_arguments()
+    arguments = get_parsed_arguments()
     # for animal in arguments.animals:
-    #     noise = get_animal_noise(arguments.language, animal)
+    #     noise = get_animal_noise(arguments.language, animal) #all_books = {some variable that represents which function to use} (arguments.filter1, [filter2])
     #     if noise:
     #         print(f'The {animal} says "{noise}"')
     #     else:
