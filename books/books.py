@@ -4,10 +4,11 @@ import sys
 
 all_books = []
 def get_parsed_arguments():
-    parser = argparse.ArgumentParser(description='')
-    parser.add_argument('searchAuthor', metavar='Author', nargs='+', help='author whose books you are searching for')
-    parser.add_argument('searchTitle', metavar='Title', nargs='+', help='string you are looking for in book title')
-    parser.add_argument('yearRange', '-yr', default='1759-2020', help='the years in which you would like to sort')
+    parser = argparse.ArgumentParser(description='our description goes here:')
+    parser.add_argument('-a', '--filter_author', metavar='', nargs='+', help='author(s) whose books you are searching for')
+    parser.add_argument('-t', '--filter_title', metavar='', nargs='+', help='author(s) whose books you are searching for')
+    #parser.add_argument('searchTitle', metavar='', nargs='+', help='string you are looking for in book title')
+    #parser.add_argument('yearRange', '-yr', default='1759-2020', help='the years in which you would like to sort')
     parsed_arguments = parser.parse_args()
     return parsed_arguments
 
@@ -53,7 +54,6 @@ def filter_year_range(start_year, end_year):
     return after_filter
 
 def main():
-    arguments = get_parsed_arguments()
     # for animal in arguments.animals:
     #     noise = get_animal_noise(arguments.language, animal) #all_books = {some variable that represents which function to use} (arguments.filter1, [filter2])
     #     if noise:
@@ -63,10 +63,22 @@ def main():
     global all_books
     with open('books.csv') as file:
         all_books = (list(csv.reader(file, skipinitialspace=True)))
+    original_copy = all_books.copy()
 
-    all_books = filter_author_or_title("author", "toni")
-    all_books = filter_author_or_title("title", "love")
-    all_books = filter_year_range(0000, 2000)
+    arguments = get_parsed_arguments()
+    if arguments.filter_author:
+        for a_name in arguments.filter_author:
+            print("author: " + a_name)
+            all_books = filter_author_or_title("author", a_name)
+            if len(arguments.filter_author) > 1:
+                print(all_books)
+                all_books = original_copy.copy()
+    elif arguments.filter_title: 
+        for a_title in arguments.filter_title:
+            all_books = filter_author_or_title("title", a_title)
+    elif arguments.filter_year:
+        all_books = filter_year_range(0000, 2000)
+    
     print(all_books)
 
 
