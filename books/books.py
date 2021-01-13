@@ -29,21 +29,27 @@ def filter_author_or_title(author_or_title, one_name):
 
     return after_filter
 
-def filter_single_year(a_year): #should we combine this with the below function? ex. if end_year != null
-                                #then we can do what the below function does, otherwise it will do what this one does?
-    global all_books
-    after_filter = []
-    for row in all_books:
-        if int(row[1]) == int(a_year):
-            after_filter.append(row)
-    return after_filter
+# def filter_single_year(a_year): #should we combine this with the below function? ex. if end_year != null
+#                                 #then we can do what the below function does, otherwise it will do what this one does?
+#     global all_books
+#     after_filter = []
+#     for row in all_books:
+#         if int(row[1]) == int(a_year):
+#             after_filter.append(row)
+#     return after_filter
 
+#if user only input 1 year, use "filter_year_range([start_year], "no end year"). Literally, the string "no end year"
 def filter_year_range(start_year, end_year):
     global all_books
     after_filter = []
-    for row in all_books:
-        if int(row[1]) >= int(start_year) and int(row[1]) <= int(end_year):
-            after_filter.append(row)
+    if end_year != "no end year":
+        for row in all_books:
+            if int(row[1]) >= int(start_year) and int(row[1]) <= int(end_year):
+                after_filter.append(row)
+    else:
+        for row in all_books:
+            if int(row[1]) == int(start_year):
+                after_filter.append(row)
     return after_filter
 
 def main():
