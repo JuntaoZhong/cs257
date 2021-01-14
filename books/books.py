@@ -4,10 +4,10 @@ import sys
 
 all_books = []
 def get_parsed_arguments():
-    parser = argparse.ArgumentParser(description='print out a list of books that satisfies the filter(s) given by a user')
-    parser.add_argument('-a', '--filter_author', metavar='author', nargs= '+', help='author(s) whose books you are searching for')
-    parser.add_argument('-t', '--filter_title', metavar='title', nargs= '+', help='book title(s) you are searching for')
-    parser.add_argument('-y', '--filter_year', metavar='year', nargs = '+', help='the years in which you would like to sort')
+    parser = argparse.ArgumentParser(description='prints out a list of books that satisfy the filter(s) given by a user')
+    parser.add_argument('-a', '--filter_author', metavar='author', nargs= '+', help='author whose books you are searching for')
+    parser.add_argument('-t', '--filter_title', metavar='title', nargs= '+', help='book title you are searching for')
+    parser.add_argument('-y', '--filter_year', metavar='year', nargs = '+', help='the years in which you would like to search')
     #parser.add_argument('-h', '--help', nargs = 0, help = 'usage.txt')
     parsed_arguments = parser.parse_args()
     return parsed_arguments
@@ -26,7 +26,7 @@ def filter_author_or_title(author_or_title, one_name):
             if one_name.lower() in row[0].lower():
                 after_filter.append(row)
     else:
-        print("error! only 'author' and 'title' choice are allowed")
+        print("Error! only 'author' and 'title' choice are allowed")
 
     return after_filter
 
@@ -45,12 +45,6 @@ def filter_year_range(start_year, end_year):
     return after_filter
 
 def main():
-    # for animal in arguments.animals:
-    #     noise = get_animal_noise(arguments.language, animal) #all_books = {some variable that represents which function to use} (arguments.filter1, [filter2])
-    #     if noise:
-    #         print(f'The {animal} says "{noise}"')
-    #     else:
-    #         print(f'I don\'t know what the {animal} says in {arguments.language}')
     global all_books
     with open('books.csv') as file:
         all_books = (list(csv.reader(file, skipinitialspace=True)))
@@ -69,8 +63,8 @@ def main():
     #     print("You can only search for 1 title at a time \n, if there is a space in your input, put them into a pair of quotation sign")
     # if len(list(arguments.filter_author)) > 1:
     #     print("You can only search for 1 author at a time \n, if there is a space in your input, put them into a pair of quotation sign")
-    
-    if arguments.filter_title: 
+
+    if arguments.filter_title:
         all_books = filter_author_or_title("title", arguments.filter_title[0])
         filter_output.append("with the title: " + arguments.filter_title[0])
         all_books = sorted(all_books,key=lambda x: (x[0]))
@@ -81,21 +75,21 @@ def main():
         years.sort()
         if len(years) > 1:
             all_books = filter_year_range(years[0], years[1])
-            filter_output.append("published between year range: " + str(years[0]) + "-" + str(years[1]))
+            filter_output.append("published in the year range: " + str(years[0]) + "-" + str(years[1]))
         else:
             all_books = filter_year_range(years[0], "no end year")
-            filter_output.append("published exactly at year: " + str(years[0]))
+            filter_output.append("published in: " + str(years[0]))
         all_books = sorted(all_books,key=lambda x: (x[1]))
     if arguments.filter_author:
         all_books = filter_author_or_title("author", arguments.filter_author[0])
-        filter_output.append("with the author: " + arguments.filter_author[0])
-        all_books = sorted(all_books,key=lambda x: (x[2]))      
-    
+        filter_output.append("written by: " + arguments.filter_author[0])
+        all_books = sorted(all_books,key=lambda x: (x[2]))
+
     filter_print = ''
     for each in filter_output:
         filter_print= filter_print + each
     if (len(all_books) == 0):
-        print("there is no book that " + filter_print) 
+        print("There are no books that " + filter_print)
     else:
         titles = []
         years = []
@@ -104,20 +98,20 @@ def main():
             titles.append(book[0])
             years.append(book[1])
             authors.append(book[2])
-        
+
 
         titles =["titles", "years", "authors"]
         #data = [titles] + list(zip(titles, authors, years))
-        
+
 
         if (not arguments.filter_author) and (not arguments.filter_year) and (not arguments.filter_title):
-            print("you have to use a filter, or type 'python3 books.py --help' for help")
+            print("You must use at least one filter, or type 'python3 books.py --help' for help")
         else:
             data = [titles] + all_books
             for i, d in enumerate(data):
                 #line = '|'.join(str(x).ljust(30) for x in d)
                 line = ''
-                for j, each in enumerate(d): 
+                for j, each in enumerate(d):
                     if j == 0:
                         line = line + str(each).ljust(55)
                     if j == 1:
