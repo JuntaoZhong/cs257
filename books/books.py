@@ -81,8 +81,8 @@ def filter_books(arguments):
     return (filter_output)
 
 def organize_output(filter_output, arguments):
-    global all_books
 #organize output of of books into a table with titles, years, and authors
+    global all_books
     filter_print = ''
     for each in filter_output:
         filter_print= filter_print + each
