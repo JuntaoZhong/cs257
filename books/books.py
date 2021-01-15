@@ -6,7 +6,7 @@ Under Prof Jeff Ondich: CS 257, Winter 2020
 Given a books.csv of a book list with book title, published year, and author
 return a list of books that stasifies the given filters
 
-available filters: 
+available filters:
 --filter_author [author name]
 --filter_title [book_title]
 --filter_year [year] # book published at this year
@@ -58,14 +58,14 @@ def filter_year_range(start_year, end_year):
                 after_filter.append(row)
     return after_filter
 
-# parse user inputs and combine different filters 
+# parse user inputs and combine different filters
 # return the list of books that statisfies all filters
 def filter_books(arguments):
     global all_books
     filter_output = []
     if arguments.filter_title:
         all_books = filter_author_or_title("title", arguments.filter_title[0])
-        filter_output.append("with the title: " + arguments.filter_title[0])
+        filter_output.append("with : " + arguments.filter_title[0] + " in the title.")
         all_books = sorted(all_books,key=lambda x: (x[0]))
     if arguments.filter_year:
         years = []
@@ -81,7 +81,7 @@ def filter_books(arguments):
         all_books = sorted(all_books,key=lambda x: (x[1]))
     if arguments.filter_author:
         all_books = filter_author_or_title("author", arguments.filter_author[0])
-        filter_output.append("written by: " + arguments.filter_author[0])
+        filter_output.append("written by an author with : " + arguments.filter_author[0] + " in their name.")
         all_books = sorted(all_books,key=lambda x: (x[2]))
     return filter_output
 
