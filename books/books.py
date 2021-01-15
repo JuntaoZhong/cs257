@@ -65,7 +65,7 @@ def filter_books(arguments):
     filter_output = []
     if arguments.filter_title:
         all_books = filter_author_or_title("title", arguments.filter_title[0])
-        filter_output.append("with : " + arguments.filter_title[0] + " in the title.")
+        filter_output.append("with: " +  arguments.filter_title[0] + " in the title.")
         all_books = sorted(all_books,key=lambda x: (x[0]))
     if arguments.filter_year:
         years = []
@@ -81,7 +81,7 @@ def filter_books(arguments):
         all_books = sorted(all_books,key=lambda x: (x[1]))
     if arguments.filter_author:
         all_books = filter_author_or_title("author", arguments.filter_author[0])
-        filter_output.append("written by an author with : " + arguments.filter_author[0] + " in their name.")
+        filter_output.append("written by an author with: " + arguments.filter_author[0] + " in their name.")
         all_books = sorted(all_books,key=lambda x: (x[2]))
     return filter_output
 
