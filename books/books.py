@@ -90,6 +90,7 @@ def main():
     #return (filter_output)
 
 #def organize_output(filter_output, arguments):
+#organize output of of books into a table with titles, years, and authors
     filter_print = ''
     for each in filter_output:
         filter_print= filter_print + each
