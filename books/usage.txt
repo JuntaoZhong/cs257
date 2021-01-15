@@ -1,13 +1,11 @@
 #user guide for book search program books.py
-#created by Grace de Benedetti and Jimmy Zhong at Carleton College
+#writen by Grace de Benedetti and Jimmy Zhong at Carleton College
 #Under Prof Jeff Ondich: CS 257, Winter 2020
 
-[--version -V]
+usage: books.py [--help] [-a author] [-t title] [-y year [year ...]]
 
 [--help -h]
-
-[--outfile -o fileName]
-Print out entire file.
+Get help and command line user guide
 
 [--filter_title -t titleString]
 Given a filter string S, filter out books whose titles do not contain S
@@ -25,15 +23,18 @@ is given, only books published in that year will be printed.
 
 We also feature flag-combining
 
-[--filter_title --filter_author -ta "titleString" "authorString"]
+[--filter_title "titleString" --filter_author "authorString"]
 Given two filter strings T and S separated by double quotations, filter out all
 books whose titles do not contain T and filter out all authors whose names do
 not contain S. Print out all books that satisfy both conditions.
 
-[--filter_title --filter_year -ta "titleString" "startYearInt [endYearInt]"]
+[--filter_title "titleString" --filter_year startYearInt [endYearInt]]
 Given one filter strings S and one year range T separated by double quotations,
 filter out all books whose titles do not contain S and all books not published
 within year range T. Print out all books that satisfy both conditions.
+
+[-t "titleString" -y startYearInt endYearInt -a "authorString"]
+Short hand, Print out all books that satisfy all 3 filters.
 
 If no argument is given, a message will be sent reading "one positional argument
 is required, please include at least one filter."
