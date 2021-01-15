@@ -51,8 +51,10 @@ def main():
     original_copy = all_books.copy()
 
     arguments = get_parsed_arguments()
+    #filter_books(arguments):
+    #organize_output(filter_output):
 
-
+#def filer_books(arguments):
     filter_output = []
 
     #if arguments.help:
@@ -63,6 +65,7 @@ def main():
     #     print("You can only search for 1 title at a time \n, if there is a space in your input, put them into a pair of quotation sign")
     # if len(list(arguments.filter_author)) > 1:
     #     print("You can only search for 1 author at a time \n, if there is a space in your input, put them into a pair of quotation sign")
+
 
     if arguments.filter_title:
         all_books = filter_author_or_title("title", arguments.filter_title[0])
@@ -84,12 +87,14 @@ def main():
         all_books = filter_author_or_title("author", arguments.filter_author[0])
         filter_output.append("written by: " + arguments.filter_author[0])
         all_books = sorted(all_books,key=lambda x: (x[2]))
+    #return (filter_output)
 
+#def organize_output(filter_output, arguments):
     filter_print = ''
     for each in filter_output:
         filter_print= filter_print + each
     if (len(all_books) == 0):
-        print("There are no books that " + filter_print)
+        print("There are no books " + filter_print)
     else:
         titles = []
         years = []
