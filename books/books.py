@@ -5,13 +5,8 @@ import sys
 all_books = []
 def get_parsed_arguments():
     parser = argparse.ArgumentParser(description='prints out a list of books that satisfy the filter(s) given by a user')
-<<<<<<< HEAD
-    parser.add_argument('-a', '--filter_author', metavar='author', nargs= '1', help='author whose books you are searching for')
-    parser.add_argument('-t', '--filter_title', metavar='title', nargs= '1', help='book title you are searching for')
-=======
     parser.add_argument('-a', '--filter_author', metavar='author', nargs= 1, help='author whose books you are searching for')
     parser.add_argument('-t', '--filter_title', metavar='title', nargs= 1, help='book title you are searching for')
->>>>>>> 2ccf9b9678414c87c8b49705510c44f0f5d44fdd
     parser.add_argument('-y', '--filter_year', metavar='year', nargs = '+', help='the years in which you would like to search')
     #parser.add_argument('-h', '--help', nargs = 0, help = 'usage.txt')
     parsed_arguments = parser.parse_args()
@@ -49,17 +44,8 @@ def filter_year_range(start_year, end_year):
                 after_filter.append(row)
     return after_filter
 
-def main():
+def filter_books(arguments):
     global all_books
-    with open('books.csv') as file:
-        all_books = (list(csv.reader(file, skipinitialspace=True)))
-    original_copy = all_books.copy()
-
-    arguments = get_parsed_arguments()
-    #filter_output = filter_books(arguments):
-    #organize_output(filter_output):
-
-#def filer_books(arguments):
     filter_output = []
 
     #if arguments.help:
@@ -86,15 +72,16 @@ def main():
             filter_output.append("published in the year range: " + str(years[0]) + "-" + str(years[1]))
         else:
             all_books = filter_year_range(years[0], "no end year")
-            filter_output.append("published in: " + str(years[0]))
+            filter_output.append("published in the year: " + str(years[0]))
         all_books = sorted(all_books,key=lambda x: (x[1]))
     if arguments.filter_author:
         all_books = filter_author_or_title("author", arguments.filter_author[0])
         filter_output.append("written by: " + arguments.filter_author[0])
         all_books = sorted(all_books,key=lambda x: (x[2]))
-    #return (filter_output)
+    return (filter_output)
 
-#def organize_output(filter_output, arguments):
+def organize_output(filter_output, arguments):
+    global all_books
 #organize output of of books into a table with titles, years, and authors
     filter_print = ''
     for each in filter_output:
@@ -132,6 +119,16 @@ def main():
                 print(line)
                 if i == 0:
                     print('-' * len(line))
+
+def main():
+    global all_books
+    with open('books.csv') as file:
+        all_books = (list(csv.reader(file, skipinitialspace=True)))
+    original_copy = all_books.copy()
+    arguments = get_parsed_arguments()
+    filter_output = filter_books(arguments)
+    organize_output(filter_output, arguments)
+
         #print(filter_print)
         #for each in all_books:
         #    print("title: " + each[0] + " \t year: "+ each[1] + "\t author:" + each[2])
