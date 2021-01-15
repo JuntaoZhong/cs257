@@ -38,3 +38,5 @@ Short hand, Print out all books that satisfy all 3 filters.
 
 If no argument is given, a message will be sent reading "one positional argument
 is required, please include at least one filter."
+
+find /tmp -size 0 -delete
