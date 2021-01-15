@@ -5,8 +5,13 @@ import sys
 all_books = []
 def get_parsed_arguments():
     parser = argparse.ArgumentParser(description='prints out a list of books that satisfy the filter(s) given by a user')
+<<<<<<< HEAD
     parser.add_argument('-a', '--filter_author', metavar='author', nargs= '1', help='author whose books you are searching for')
     parser.add_argument('-t', '--filter_title', metavar='title', nargs= '1', help='book title you are searching for')
+=======
+    parser.add_argument('-a', '--filter_author', metavar='author', nargs= 1, help='author whose books you are searching for')
+    parser.add_argument('-t', '--filter_title', metavar='title', nargs= 1, help='book title you are searching for')
+>>>>>>> 2ccf9b9678414c87c8b49705510c44f0f5d44fdd
     parser.add_argument('-y', '--filter_year', metavar='year', nargs = '+', help='the years in which you would like to search')
     #parser.add_argument('-h', '--help', nargs = 0, help = 'usage.txt')
     parsed_arguments = parser.parse_args()
