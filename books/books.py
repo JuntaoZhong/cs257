@@ -25,10 +25,11 @@ def get_parsed_arguments():
     parsed_arguments = parser.parse_args()
     return parsed_arguments
 
-# search a title => do filter_author_or_title("title", [your title])
-# search an author => do filter_author_or_title("author", [your author])
-# return a list of all books with given title/author
+
 def filter_author_or_title(author_or_title, one_name):
+    '''search a title => do filter_author_or_title("title", [your title])
+       search an author => do filter_author_or_title("author", [your author])
+       return a list of all books with given title/author'''
     global all_books
     after_filter = []
     if author_or_title == "author":
@@ -43,9 +44,10 @@ def filter_author_or_title(author_or_title, one_name):
         print("Error! only 'author' and 'title' choice are allowed")
     return after_filter
 
-# return a list of all books published between start_year and end_year
-# if user only input 1 year => do "filter_year_range([start_year], "no end year"). Literally, the string "no end year"
+
 def filter_year_range(start_year, end_year):
+    '''return a list of all books published between start_year and end_year
+       if user only input 1 year => do "filter_year_range([start_year], "no end year"). Literally, the string "no end year"'''
     global all_books
     after_filter = []
     if end_year != "no end year":
@@ -58,9 +60,10 @@ def filter_year_range(start_year, end_year):
                 after_filter.append(row)
     return after_filter
 
-# parse user inputs and combine different filters
-# return the list of books that statisfies all filters
+
 def filter_books(arguments):
+    '''parse user inputs and combine different filters
+       return the list of books that statisfies all filters'''
     global all_books
     filter_output = []
     if arguments.filter_title:
@@ -85,8 +88,8 @@ def filter_books(arguments):
         all_books = sorted(all_books,key=lambda x: (x[2]))
     return filter_output
 
-# organize the list of output books into a nice-looking table with titles, years, and authors
 def organize_output(filter_output, arguments):
+    '''organize the list of output books into a nice-looking table with titles, years, and authors'''
     global all_books
     filter_print = ''
     for each in filter_output:
