@@ -7,16 +7,16 @@ usage: books.py [--help] [-a author] [-t title] [-y year [year ...]]
 [--help -h]
 Get help and command line user guide
 
-[--filter_title -t titleString]
+[--filter_title, -t titleString]
 Given a filter string S, filter out books whose titles do not contain S
 (case-insensitive). If no title is given, all book titles will be printed.
 
-[--filter_author -a authorString]
+[--filter_author, -a authorString]
 Given a filter string S, filter out authors whose names do not contain S
 (case-insensitive). For each such author, print a list of the author's books. If
 no author is given, all authors and their books will be printed.
 
-[--filter_year -y startYearInt [endYearInt]]
+[--filter_year, -y startYearInt [endYearInt]]
 Given a range of years A to B, filter out book titles that are not published
 between years A and B, inclusive. Default filter year is all years. If one year
 is given, only books published in that year will be printed.

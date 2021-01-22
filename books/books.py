@@ -16,7 +16,7 @@ import argparse
 import csv
 import sys
 
-class a_book: 
+class a_book:
     def __init__(self, book_title, publish_year, author):
         self.book_title = str(book_title)
         self.publish_year = int(publish_year)
@@ -91,7 +91,7 @@ def filter_books(arguments, input_books):
         books_after_filter = filter_author_or_title("author", user_search, books_after_filter)
         filter_output.append("written by an author with: '" + user_search + "' in their name.")
         books_after_filter = sorted(books_after_filter, key=lambda x: x.author)
-    
+
     return books_after_filter, filter_output
 
 def print_pretty_line(title, year, author):
