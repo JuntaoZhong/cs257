@@ -64,7 +64,7 @@ def filter_year_range(start_year, end_year, input_books):
     return after_filter
 
 
-def filter_books(arguments, input_books):
+def filter_books_by_argument(arguments, input_books):
     '''parse user inputs and combine different filters
        return the list of books that statisfies all filters'''
     books_after_filter = input_books
@@ -94,7 +94,7 @@ def filter_books(arguments, input_books):
 
     return books_after_filter, filter_output
 
-def print_pretty_line(title, year, author):
+def print_formatting_line(title, year, author):
     '''used in organize_ouput, print a formatted line given 3 inputs objects, return the length of the printed line'''
     str_to_print = str(title).ljust(55) + str(year).ljust(10) + str(author)
     print(str_to_print)
@@ -108,10 +108,10 @@ def organize_output(filter_output, arguments, books_after_filter):
     if (len(books_after_filter) == 0):
         print("There are no books " + filter_print)
     else:
-        header_length = print_pretty_line("titles", "years", "authors")
+        header_length = print_formatting_line("titles", "years", "authors")
         print('-' * header_length)
         for book in books_after_filter:
-            print_pretty_line(book.book_title, book.publish_year, book.author)
+            print_formatting_line(book.book_title, book.publish_year, book.author)
 
 def main():
     all_books = []
@@ -123,7 +123,7 @@ def main():
             all_books.append(a_book(row[0], row[1], row[2]))
 
     arguments = get_parsed_arguments()
-    book_list_after_filter, filter_output = filter_books(arguments, all_books)
+    book_list_after_filter, filter_output = filter_books_by_argument(arguments, all_books)
     organize_output(filter_output, arguments, book_list_after_filter)
 
 if __name__ == '__main__':
