@@ -1,6 +1,7 @@
 '''
 book search program books.py
 created by Grace de Benedetti and Jimmy Zhong at Carleton College
+revised by Grace and Jimmy
 Under Prof Jeff Ondich: CS 257, Winter 2020
 
 Given a books.csv of a book list with book title, published year, and author
