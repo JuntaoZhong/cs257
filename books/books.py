@@ -59,7 +59,7 @@ def filter_year_range(start_year, end_year, input_books):
                 after_filter.append(book)
     else:
         for book in input_books:
-            if book.publish_year == int(start_year):
+            if book.publish_year >= int(start_year):
                 after_filter.append(book)
     return after_filter
 
@@ -84,7 +84,7 @@ def filter_books_by_argument(arguments, input_books):
             filter_output.append("published in the year range: " + str(start_year) + "-" + str(end_year))
         else:
             books_after_filter = filter_year_range(start_year, "no end year", books_after_filter)
-            filter_output.append("published in the year: " + str(start_year))
+            filter_output.append("published after the year: " + str(start_year))
         books_after_filter = sorted(books_after_filter, key=lambda x: x.publish_year)
     if arguments.filter_author:
         user_search = arguments.filter_author[0]
