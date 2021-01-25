@@ -1,0 +1,93 @@
+sudo service postgresql start
+
+sudo -u postgres createdb olympics
+sudo -u postgres psql
+
+psql=# grant all privileges on database olympics to juntao ; 
+
+get out to the command prompt  
+
+psql -U juntao olympics
+sudo -u postgres psql -U postgres olympics
+
+tr -d "\r" < athletes_table.csv > athletes.csv
+
+SELECT 
+   COUNT(*) 
+FROM 
+   athletes
+
+DROP TABLE IF EXISTS athletes;
+CREATE TABLE athletes (
+    athlete_ID INT NOT NULL,
+    athlete_name text,
+    sex text
+);
+\copy athletes from 'athletes_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER 
+
+\copy athletes from 'athletes.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER 
+
+DROP TABLE IF EXISTS main_events;
+CREATE TABLE main_events (
+	event_ID INT NOT NULL,
+	athlete_ID INT NOT NULL,
+	age INT,
+	height decimal,
+	weight decimal,
+	team_ID INT,
+	NOC_ID INT,
+	oly_game_ID INT NOT NULL,
+	sport_category_ID INT NOT NULL,
+	detailed_event_ID INT NOT NULL
+);
+\copy main_events from 'main_events_table.csv' DELIMITER ',' CSV NULL 'NA' HEADER 
+
+
+DROP TABLE IF EXISTS teams;
+CREATE TABLE teams (
+    teams_ID INT NOT NULL,
+    Team text
+);
+\copy teams from 'teams_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER 
+
+DROP TABLE IF EXISTS NOCs;
+CREATE TABLE NOCs (
+    NOCs_ID INT NOT NULL,
+    NOC text
+);
+\copy NOCs from 'NOCs_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER 
+
+DROP TABLE IF EXISTS sport_categories;
+CREATE TABLE sport_categories (
+    sport_category_ID INT NOT NULL,
+    sport_category text
+);
+\copy NOCs from 'sport_categories_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER
+
+DROP TABLE IF EXISTS detailed_events;
+CREATE TABLE detailed_events (
+    detailed_event_ID INT NOT NULL,
+    detailed_event text
+);
+\copy detailed_events from 'detailed_events_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER
+
+
+SELECT * FROM teams 
+WHERE teams_ID < 10;
+
+SELECT athlete_name, sport_category
+FROM athletes, sport_categories, main_events
+WHERE athletes.athlete_ID = main_events.athlete_ID
+AND sport_categories.sport_category_ID = main_events.sport_category_ID
+AND athletes.athlete_name LIKE '%John%';
+
+SELECT * 
+FROM athletes
+WHERE athlete_name LIKE '%John%';
+
+SELECT * 
+FROM athletes
+WHERE athlete_name LIKE '%Anna%';
+
+
+
