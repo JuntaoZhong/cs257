@@ -1,7 +1,11 @@
+'''
+convert.py written by Jimmy Zhong, Kyosuke Imai at Carleton College in CS Software Design under Prof Jeff Ondich 
+converts an csv file called 'athlete_events.csv' into database-ready csv (with index included)
+Produces 8 tables for database operation: 
+athletes_table.csv; teams_table.csv; sport_categories_table.csv; detailed_events_table.csv
+medals_table.csv; NOCs_table.csv; olympic_games_table.csv; main_events_table.csv
+'''
 import csv 
-
-#read files ("ID","Name","Sex","Age","Height","Weight","Team","NOC","Games","Year","Season","City","Sport","Event","Medal")
-
 
 class a_row:
 	"""object that takes in every element in a row of given csv file"""
@@ -151,7 +155,6 @@ def make_csv_row(this_row):
 		csv_save_cell = str(this_row[i]).replace(",", "").replace('"', "(", 1)
 		csv_save_cell = csv_save_cell.replace('"', ")")
 		out_csv_row = out_csv_row + "," + csv_save_cell
-	
 	return (out_csv_row + '\n')	
 
 def print_table(table_list, file_name, header_list):
@@ -163,10 +166,8 @@ def print_table(table_list, file_name, header_list):
 		print(num_col)
 		print(len(header_list))
 		return
-
 	outfile = open(file_name, 'w')
 	outfile.write(make_csv_row(header_list))
-
 	# write actual data
 	for row in table_list:
 		outfile.write(make_csv_row(row))
@@ -213,98 +214,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-'''
-# create an country table: ID, abrivated name, fully spelled country name (later),
-def create_team_table(all_rows): 
-	"""returns a 2D array and dictionary of team ID and team names given a list of row objects as a parameter"""
-	teams_table = []
-	#country_set = set()
-	teams_dict = {}
-	index = 0
-
-	for a_row in all_rows: 
-		if a_row.team not in teams_dict: 
-			index = index + 1
-			this_row = [index, a_row.team]
-			teams_table.append(this_row)
-			#country_set.add(a_row)
-			teams_dict[a_row.team] = index
-	return teams_table, teams_dict
-'''
-'''
-# sport_events_table: ID, event, the sport it belongs to
-class sport_event: 
-	"""sport_event object that takes in sport name and category of the event """
-	def __init__(self, sport_category, detailed_event):
-		self.sport_category = sport_category
-		self.detailed_event = detailed_event
-	def __hash__(self):
-		return hash(self.detailed_event)
-	def __eq__(self, other):
-		return self.detailed_event == other.detailed_event
-
-
-def create_sport_events_table(all_rows):
-	"""returns 2D array and dictionary of sport events ID and sport events object given a list of row objects as a parameter"""
-	sport_events_table = []
-	sport_events_dict = {}
-	index = 0
-	for a_row in all_rows:
-		a_sport_event = sport_event(a_row.sport_category, a_row.detailed_event)
-		if a_sport_event not in sport_events_dict:
-			index = index + 1
-			this_row = [index, a_row.sport_category, a_row.detailed_event]
-			sport_events_table.append(this_row)
-			sport_events_dict[a_sport_event] = index
-	return sport_events_table, sport_events_dict	
-
-# main table: event_ID (huge), athlete_ID, Age(unchanged), Height(unchanged), Weight (unchanged), team_ID, country_table_ID, Olympics_game_ID, Sport_events_ID
-def create_main_events_table(athlete_dict, team_dict, NOC_dict, olympic_games_dict, sport_events_dict, all_rows):
-	"""return main events table(that displays all the IDs accordingly) given the dictionary of each of the elements in the table as a parameter."""
-	main_events_table = []
-	index = 1
-	for row_obj in all_rows:
-		# make athlete object to find its id from the dictionary
-		an_athlete = athlete(row_obj.athe_name, row_obj.sex)
-		athlete_id = athlete_dict[an_athlete]
-		
-		team_id = team_dict[row_obj.team]
-		NOC_id = NOC_dict[row_obj.NOC]
-		
-		an_oly_game = olympic_game(row_obj.year, row_obj.season, row_obj.city)
-		oly_game_id = olympic_games_dict[an_oly_game]
-
-		a_sport_event = sport_event(row_obj.sport_category, row_obj.detailed_event)
-		sport_event_id = sport_events_dict[a_sport_event]
-	
-		# athlete Age	Height	Weight remains as they are
-		this_row = [index, athlete_id, row_obj.age, row_obj.height, row_obj.weight, team_id, NOC_id, oly_game_id, sport_event_id]
-		main_events_table.append(this_row)
-		index = index + 1
-	return main_events_table
-'''
-
-'''
-	team_table, team_dict = create_team_table(all_rows)
-	team_header = ["ID", "Team"]
-	print_table(team_table, "team_table.csv", team_header)
-
-	NOC_table, NOC_dict = create_NOC_table(all_rows)
-	NOC_header = ["ID", "NOC"]
-	print_table(NOC_table, "NOC_table.csv", NOC_header)
-
-	olympic_table, olympic_dict = create_olympic_games_table(all_rows)
-	olympic_header = ["ID", "year", "season", "city"]
-	print_table(olympic_table, "olympic_games_table.csv", olympic_header)
-	
-	sport_events_table, sport_events_dict = create_sport_events_table(all_rows)
-	sport_events_header = ["ID", "sport_category", "detailed_event"]
-	print_table(sport_events_table, "sport_events_table.csv", sport_events_header)
-
-	main_table_header = ["event_ID", "athlete_ID", "age", "height", "weight", "team_ID", "NOC_ID", "oly_game_ID", "sport_event_ID"]
-	main_events_table = create_main_events_table(athlete_dict, team_dict, NOC_dict, olympic_dict, sport_events_dict, all_rows)
-	print_table(main_events_table, "main_events_table.csv", main_table_header)
-'''

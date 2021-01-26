@@ -43,7 +43,7 @@ CREATE TABLE sport_categories (
     sport_category_ID INT NOT NULL,
     sport_category text
 );
-\copy NOCs from 'sport_categories_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER
+\copy sport_categories from 'sport_categories_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER
 
 DROP TABLE IF EXISTS detailed_events;
 CREATE TABLE detailed_events (
