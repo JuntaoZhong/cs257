@@ -3,13 +3,13 @@ convert.py written by Jimmy Zhong, Kyosuke Imai at Carleton College in CS Softwa
 converts an csv file called 'athlete_events.csv' into database-ready csv (with index included)
 Produces 8 tables for database operation: 
 athletes_table.csv; teams_table.csv; sport_categories_table.csv; detailed_events_table.csv
-medals_table.csv; NOCs_table.csv; olympic_games_table.csv; main_events_table.csv
+medals_table.csv; nocs_table.csv; olympic_games_table.csv; main_events_table.csv
 '''
 import csv 
 
 class a_row:
 	"""object that takes in every element in a row of given csv file"""
-	def __init__(self, athe_ID, athe_name, sex, age, height, weight, team, NOC,
+	def __init__(self, athe_ID, athe_name, sex, age, height, weight, team, noc,
 	game, year, season, city, sport_category, detailed_event, medal):
 		self.athe_ID = athe_ID
 		self.athe_name = athe_name
@@ -18,7 +18,7 @@ class a_row:
 		self.height = height
 		self.weight = weight
 		self.team = team
-		self.noc = NOC
+		self.noc = noc
 		self.game = game
 		self.year = year
 		self.season = season
@@ -31,7 +31,7 @@ def create_one_map_one_table(all_rows, option):
 	""" returns a 2D array and dictionary of one_map_one style data, 
 		given a list of row objects as a parameter applicable to 
 		option 1: [team] : ID, country_team (United State)
-		option 2: [NOC] : ID, NOC (USA)
+		option 2: [noc] : ID, noc (USA)
 		option 3: [sport_category] : ID, sport_category (swimming)
 		option 4: [detailed_event] : ID, sport_event (swimming man 100m freestyle)
 		option 5: [medal] : ID, Gold/Silver/Bronze/NA
@@ -99,7 +99,7 @@ def create_olympic_games_table(all_rows):
 			olympic_games_dict[game] = index
 	return olympic_games_table, olympic_games_dict
 
-def create_main_events_table(athlete_dict, team_dict, NOC_dict, olympic_games_dict, 
+def create_main_events_table(athlete_dict, team_dict, noc_dict, olympic_games_dict, 
 sport_category_dict, detailed_event_dict, medal_dict, all_rows):
 	""" return main events table(that displays all the IDs accordingly) given the dictionary of 
 		each of the elements in the table as a parameter.
@@ -113,7 +113,7 @@ sport_category_dict, detailed_event_dict, medal_dict, all_rows):
 		sport_category_id = sport_category_dict[row_obj.sport_category]
 		detailed_event_id = detailed_event_dict[row_obj.detailed_event]
 		medal_id = medal_dict[row_obj.medal]
-		NOC_id = NOC_dict[row_obj.noc]
+		noc_id = noc_dict[row_obj.noc]
 		
 		# make athlete object to find its id from the dictionary
 		an_athlete = athlete(row_obj.athe_name, row_obj.sex)
@@ -123,7 +123,7 @@ sport_category_dict, detailed_event_dict, medal_dict, all_rows):
 	
 		# athlete Age Height Weight remains as they are
 		this_row = [index, athlete_id, row_obj.age, row_obj.height, row_obj.weight, 
-		team_id, NOC_id, oly_game_id, sport_category_id, detailed_event_id, medal_id]
+		team_id, noc_id, oly_game_id, sport_category_id, detailed_event_id, medal_id]
 		main_events_table.append(this_row)
 		index = index + 1
 	return main_events_table
@@ -162,7 +162,7 @@ def main():
 	
 	for row in read_in_file[1:]:
 		if len(row) > 1:
-			# read in athe_ID, athe_name, sex, age, height, weight, team, NOC, 
+			# read in athe_ID, athe_name, sex, age, height, weight, team, noc, 
 			# game, year, season, city, sport_category, detailed_event, medal
 			this_row = a_row(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7],
 			row[8], row[9], row[10], row[11], row[12], row[13], row[14])
@@ -178,19 +178,19 @@ def main():
 	write_csv_table(olympic_table, "olympic_games_table.csv", ["ID", "year", "season", "city"])
 
 	team_table, team_dict = create_one_map_one_table(all_rows, "team")
-	NOC_table, NOC_dict = create_one_map_one_table(all_rows, "NOC")
+	noc_table, noc_dict = create_one_map_one_table(all_rows, "noc")
 	medals_table, medals_dict = create_one_map_one_table(all_rows, "medal")
 	sport_categories_table, sport_categories_dict = create_one_map_one_table(all_rows, "sport_category")
 	detailed_events_table, detailed_events_dict = create_one_map_one_table(all_rows, "detailed_event")
 
 	write_csv_table(team_table, "teams_table.csv", ["ID", "Team"])
-	write_csv_table(NOC_table, "NOCs_table.csv", ["ID", "NOCs"])
+	write_csv_table(noc_table, "nocs_table.csv", ["ID", "nocs"])
 	write_csv_table(medals_table, "medals_table.csv", ["ID", "medal"])
 	write_csv_table(sport_categories_table, "sport_categories_table.csv", ["ID", "sport_category"])
 	write_csv_table(detailed_events_table, "detailed_events_table.csv", ["ID", "detailed_event"])
 
-	main_table_header = ["event_ID", "athlete_ID", "age", "height", "weight", "team_ID", "NOC_ID", "oly_game_ID", "sport_category_ID", "detailed_event_ID", "medal_ID"]
-	main_events_table = create_main_events_table(athlete_dict, team_dict, NOC_dict, olympic_dict, sport_categories_dict, detailed_events_dict, medals_dict, all_rows)
+	main_table_header = ["event_ID", "athlete_ID", "age", "height", "weight", "team_ID", "noc_ID", "oly_game_ID", "sport_category_ID", "detailed_event_ID", "medal_ID"]
+	main_events_table = create_main_events_table(athlete_dict, team_dict, noc_dict, olympic_dict, sport_categories_dict, detailed_events_dict, medals_dict, all_rows)
 	write_csv_table(main_events_table, "main_events_table.csv", main_table_header)
 
 if __name__ == '__main__':
