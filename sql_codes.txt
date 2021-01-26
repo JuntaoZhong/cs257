@@ -1,0 +1,152 @@
+sudo service postgresql start
+
+sudo -u postgres createdb olympics
+sudo -u postgres psql
+
+psql=# grant all privileges on database olympics to juntao ; 
+
+get out to the command prompt  
+
+psql -U juntao olympics
+sudo -u postgres psql -U postgres olympics
+
+tr -d "\r" < athletes_table.csv > athletes.csv
+
+SELECT 
+   COUNT(*) 
+FROM 
+   athletes
+
+DROP TABLE IF EXISTS athletes;
+CREATE TABLE athletes (
+    athlete_ID INT NOT NULL,
+    athlete_name text,
+    sex text
+);
+\copy athletes from 'athletes_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER 
+
+
+DROP TABLE IF EXISTS main_events;
+CREATE TABLE main_events (
+	event_ID INT NOT NULL,
+	athlete_ID INT NOT NULL,
+	age INT,
+	height decimal,
+	weight decimal,
+	team_ID INT,
+	NOC_ID INT,
+	oly_game_ID INT NOT NULL,
+	sport_category_ID INT NOT NULL,
+	detailed_event_ID INT NOT NULL,
+	medal_id INT 
+);
+\copy main_events from 'main_events_table.csv' DELIMITER ',' CSV NULL 'NA' HEADER 
+
+
+DROP TABLE IF EXISTS teams;
+CREATE TABLE teams (
+    team_ID INT NOT NULL,
+    Team text
+);
+\copy teams from 'teams_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER 
+
+DROP TABLE IF EXISTS NOCs;
+CREATE TABLE NOCs (
+    NOCs_ID INT NOT NULL,
+    NOC text
+);
+\copy NOCs from 'NOCs_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER 
+
+DROP TABLE IF EXISTS sport_categories;
+CREATE TABLE sport_categories (
+    sport_category_ID INT NOT NULL,
+    sport_category text
+);
+\copy NOCs from 'sport_categories_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER
+
+DROP TABLE IF EXISTS detailed_events;
+CREATE TABLE detailed_events (
+    detailed_event_ID INT NOT NULL,
+    detailed_event text
+);
+\copy detailed_events from 'detailed_events_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER
+
+DROP TABLE IF EXISTS medals;
+CREATE TABLE medals (
+    medal_ID INT NOT NULL,
+    medal text
+);
+\copy medals from 'medals_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER
+
+DROP TABLE IF EXISTS olympic_games;
+CREATE TABLE olympic_games (
+	oly_game_ID INT NOT NULL,
+	year INT NOT NULL,
+	season text,
+	city text
+);
+\copy olympic_games from 'olympic_games_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER 
+
+
+SELECT * FROM teams 
+WHERE team_ID < 10;
+
+SELECT athlete_name, sport_category
+FROM athletes, sport_categories, main_events
+WHERE athletes.athlete_ID = main_events.athlete_ID
+AND sport_categories.sport_category_ID = main_events.sport_category_ID
+AND athletes.athlete_name LIKE '%John%';
+
+SELECT * 
+FROM athletes
+WHERE athlete_name LIKE '%John%';
+
+SELECT * 
+FROM athletes
+WHERE athlete_name LIKE '%Anna%';
+
+List all the NOCs (National Olympic Committees), in alphabetical order by abbreviation. These entities, by the way, are mostly equivalent to countries. But in some cases, you might find that a portion of a country participated in a particular games (e.g. one guy from Newfoundland in 1904) or some other oddball situation.
+
+SELECT NOC FROM NOCs
+ORDER BY NOC;
+
+List the names of all the athletes from Kenya. If your database design allows it, sort the athletes by last name.
+
+SELECT DISTINCT athlete_name, Team 
+FROM athletes, teams, main_events
+WHERE teams.Team LIKE '%Kenya%'
+AND teams.team_ID = main_events.team_ID
+AND athletes.athlete_ID = main_events.athlete_ID;
+
+Or 
+SELECT COUNT(*)
+FROM athletes, teams, main_events
+WHERE teams.Team LIKE '%Kenya%'
+AND teams.team_ID = main_events.team_ID
+AND athletes.athlete_ID = main_events.athlete_ID;
+
+
+List all the medals won by Greg Louganis, sorted by year. Include whatever fields in this output that you think appropriate.
+
+
+SELECT athlete_name, medal, detailed_event, year, city
+FROM athletes, medals, detailed_events, olympic_games, main_events
+WHERE athletes.athlete_name LIKE '%Greg%'
+AND athletes.athlete_name LIKE '%Louganis%'
+AND medals.medal != 'NA'
+AND athletes.athlete_ID = main_events.athlete_ID
+AND medals.medal_ID = main_events.medal_ID
+AND detailed_events.detailed_event_ID = main_events.detailed_event_ID
+AND olympic_games.oly_game_ID = main_events.oly_game_ID
+ORDER BY year;
+
+
+List all the NOCs and the number of gold medals they have won, in decreasing order of the number of gold medals.
+
+SELECT teams.Team, COUNT(medals.medal)
+FROM teams, medals, main_events
+WHERE teams.team_ID = main_events.team_ID
+AND medals.medal_ID = main_events.medal_ID
+AND medals.medal = 'Gold'
+GROUP BY teams.Team
+ORDER BY COUNT(medals.medal) DESC;

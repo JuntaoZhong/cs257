@@ -1,22 +1,3 @@
-sudo service postgresql start
-
-sudo -u postgres createdb olympics
-sudo -u postgres psql
-
-psql=# grant all privileges on database olympics to juntao ; 
-
-get out to the command prompt  
-
-psql -U juntao olympics
-sudo -u postgres psql -U postgres olympics
-
-tr -d "\r" < athletes_table.csv > athletes.csv
-
-SELECT 
-   COUNT(*) 
-FROM 
-   athletes
-
 DROP TABLE IF EXISTS athletes;
 CREATE TABLE athletes (
     athlete_ID INT NOT NULL,
@@ -25,7 +6,6 @@ CREATE TABLE athletes (
 );
 \copy athletes from 'athletes_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER 
 
-\copy athletes from 'athletes.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER 
 
 DROP TABLE IF EXISTS main_events;
 CREATE TABLE main_events (
@@ -38,14 +18,15 @@ CREATE TABLE main_events (
 	NOC_ID INT,
 	oly_game_ID INT NOT NULL,
 	sport_category_ID INT NOT NULL,
-	detailed_event_ID INT NOT NULL
+	detailed_event_ID INT NOT NULL,
+	medal_id INT 
 );
 \copy main_events from 'main_events_table.csv' DELIMITER ',' CSV NULL 'NA' HEADER 
 
 
 DROP TABLE IF EXISTS teams;
 CREATE TABLE teams (
-    teams_ID INT NOT NULL,
+    team_ID INT NOT NULL,
     Team text
 );
 \copy teams from 'teams_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER 
@@ -71,23 +52,18 @@ CREATE TABLE detailed_events (
 );
 \copy detailed_events from 'detailed_events_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER
 
+DROP TABLE IF EXISTS medals;
+CREATE TABLE medals (
+    medal_ID INT NOT NULL,
+    medal text
+);
+\copy medals from 'medals_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER
 
-SELECT * FROM teams 
-WHERE teams_ID < 10;
-
-SELECT athlete_name, sport_category
-FROM athletes, sport_categories, main_events
-WHERE athletes.athlete_ID = main_events.athlete_ID
-AND sport_categories.sport_category_ID = main_events.sport_category_ID
-AND athletes.athlete_name LIKE '%John%';
-
-SELECT * 
-FROM athletes
-WHERE athlete_name LIKE '%John%';
-
-SELECT * 
-FROM athletes
-WHERE athlete_name LIKE '%Anna%';
-
-
-
+DROP TABLE IF EXISTS olympic_games;
+CREATE TABLE olympic_games (
+	oly_game_ID INT NOT NULL,
+	year INT NOT NULL,
+	season text,
+	city text
+);
+\copy olympic_games from 'olympic_games_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER 
