@@ -22,10 +22,10 @@ AND olympic_games.oly_game_ID = main_events.oly_game_ID
 ORDER BY year;
 
 --List all the NOCs and the number of gold medals they have won, in decreasing order of the number of gold medals.
-SELECT teams.Team, COUNT(medals.medal)
-FROM teams, medals, main_events
-WHERE teams.team_ID = main_events.team_ID
+SELECT nocs.noc, COUNT(medals.medal)
+FROM nocs, medals, main_events
+WHERE nocs.nocs_id = main_events.noc_ID
 AND medals.medal_ID = main_events.medal_ID
 AND medals.medal = 'Gold'
-GROUP BY teams.Team
+GROUP BY nocs.noc
 ORDER BY COUNT(medals.medal) DESC;
