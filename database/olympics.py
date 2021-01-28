@@ -141,7 +141,7 @@ def user_query_handler(arguments, connection, output_limit):
             print(all_sport_string)
             return
 
-        medal_order_choice = "all_medals" if "all_medals" else "gold"
+        medal_order_choice = "all_medals" if arguments.all_medals else "gold"
         cursor_sport_category, title_string = noc_gold_medal_group_by_sport_query(clean_sport, connection, medal_order_choice)
         print_cursor_result(cursor_sport_category, title_string, output_limit)
 
