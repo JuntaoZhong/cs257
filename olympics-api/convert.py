@@ -31,10 +31,9 @@ def create_one_map_one_table(all_rows, option):
 	""" returns a 2D array and dictionary of one_map_one style data, 
 		given a list of row objects as a parameter applicable to 
 		option 1: [team] : ID, country_team (United State)
-		option 2: [noc] : ID, noc (USA)
-		option 3: [sport_category] : ID, sport_category (swimming)
-		option 4: [detailed_event] : ID, sport_event (swimming man 100m freestyle)
-		option 5: [medal] : ID, Gold/Silver/Bronze/NA
+		option 2: [sport_category] : ID, sport_category (swimming)
+		option 3: [detailed_event] : ID, sport_event (swimming man 100m freestyle)
+		option 4: [medal] : ID, Gold/Silver/Bronze/NA
 	"""
 	option_list = ["team", "noc", "sport_category", "detailed_event", "medal"]
 	table = []
@@ -53,6 +52,35 @@ def create_one_map_one_table(all_rows, option):
 			index = index + 1
 	return table, dictionary
 
+# noc_regions.csv
+class noc: 
+	def __init__(self, NOC, full_name = None, notes=None):
+		self.NOC = NOC
+		self.full_name = full_name
+		self.notes = notes
+	def __hash__(self):
+		return hash(self.NOC)
+	def __eq__(self, other):
+		return self.NOC == other.NOC
+
+def create_NOC_table(input_csv_file):
+	noc_table = []
+	noc_dict = {}
+	index = 1
+	with open(input_csv_file) as file:
+		read_in_file = list((csv.reader(file, skipinitialspace=True)))
+	read_in_file.append(['SGP', 'Singapore', 
+	'Singapore is not in the noc_regions.csv, but it is in athlete_events.csv'])
+	for row in read_in_file[1:]:
+		if len(row) > 1:
+			this_noc = noc(row[0], row[1], row[2])
+			if this_noc.NOC not in noc_dict:
+				noc_dict[this_noc] = index
+				noc_table.append([index, this_noc.NOC, this_noc.full_name, this_noc.notes])
+				index = index + 1
+
+	return noc_table, noc_dict
+
 class athlete:
 	"""athlete object that takes in name and sex"""
 	def __init__(self, name, sex):
@@ -65,7 +93,6 @@ class athlete:
 def create_athlete_table(all_rows):
 	"""returns a 2D array and dictionary of athelete ID, name and sex, with a list of row objects as a parameter  """
 	athletes_table = []
-	# repetition checking set
 	athletes_dict = {}
 	for a_row in all_rows:
 		an_athlete = athlete(a_row.athe_name, a_row.athe_ID)
@@ -113,13 +140,16 @@ sport_category_dict, detailed_event_dict, medal_dict, all_rows):
 		sport_category_id = sport_category_dict[row_obj.sport_category]
 		detailed_event_id = detailed_event_dict[row_obj.detailed_event]
 		medal_id = medal_dict[row_obj.medal]
-		noc_id = noc_dict[row_obj.noc]
 		
 		# make athlete object to find its id from the dictionary
 		an_athlete = athlete(row_obj.athe_name, row_obj.sex)
 		athlete_id = athlete_dict[an_athlete]
+
 		an_oly_game = olympic_game(row_obj.year, row_obj.season, row_obj.city)
 		oly_game_id = olympic_games_dict[an_oly_game]
+
+		an_NOC = noc(row_obj.noc)
+		noc_id = noc_dict[an_NOC]
 	
 		# athlete Age Height Weight remains as they are
 		this_row = [index, athlete_id, row_obj.age, row_obj.height, row_obj.weight, 
@@ -178,13 +208,13 @@ def main():
 	write_csv_table(olympic_table, "olympic_games_table.csv", ["ID", "year", "season", "city"])
 
 	team_table, team_dict = create_one_map_one_table(all_rows, "team")
-	noc_table, noc_dict = create_one_map_one_table(all_rows, "noc")
+	noc_table, noc_dict = create_NOC_table("noc_regions.csv")
 	medals_table, medals_dict = create_one_map_one_table(all_rows, "medal")
 	sport_categories_table, sport_categories_dict = create_one_map_one_table(all_rows, "sport_category")
 	detailed_events_table, detailed_events_dict = create_one_map_one_table(all_rows, "detailed_event")
 
 	write_csv_table(team_table, "teams_table.csv", ["ID", "Team"])
-	write_csv_table(noc_table, "nocs_table.csv", ["ID", "nocs"])
+	write_csv_table(noc_table, "nocs_table.csv", ["ID", "noc", "full_name", "notes"])
 	write_csv_table(medals_table, "medals_table.csv", ["ID", "medal"])
 	write_csv_table(sport_categories_table, "sport_categories_table.csv", ["ID", "sport_category"])
 	write_csv_table(detailed_events_table, "detailed_events_table.csv", ["ID", "detailed_event"])

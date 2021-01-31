@@ -1,231 +1,232 @@
-ID,nocs
-1,CHN
-2,DEN
-3,NED
-4,USA
-5,FIN
-6,NOR
-7,ROU
-8,EST
-9,FRA
-10,MAR
-11,ESP
-12,EGY
-13,IRI
-14,BUL
-15,ITA
-16,CHA
-17,AZE
-18,SUD
-19,RUS
-20,ARG
-21,CUB
-22,BLR
-23,GRE
-24,CMR
-25,TUR
-26,CHI
-27,MEX
-28,URS
-29,NCA
-30,HUN
-31,NGR
-32,ALG
-33,KUW
-34,BRN
-35,PAK
-36,IRQ
-37,UAR
-38,LIB
-39,QAT
-40,MAS
-41,GER
-42,CAN
-43,IRL
-44,AUS
-45,RSA
-46,ERI
-47,TAN
-48,JOR
-49,TUN
-50,LBA
-51,BEL
-52,DJI
-53,PLE
-54,COM
-55,KAZ
-56,BRU
-57,IND
-58,KSA
-59,SYR
-60,MDV
-61,ETH
-62,UAE
-63,YAR
-64,INA
-65,PHI
-66,SGP
-67,UZB
-68,KGZ
-69,TJK
-70,EUN
-71,JPN
-72,CGO
-73,SUI
-74,BRA
-75,FRG
-76,GDR
-77,MON
-78,ISR
-79,URU
-80,SWE
-81,ISV
-82,SRI
-83,ARM
-84,CIV
-85,KEN
-86,BEN
-87,UKR
-88,GBR
-89,GHA
-90,SOM
-91,LAT
-92,NIG
-93,MLI
-94,AFG
-95,POL
-96,CRC
-97,PAN
-98,GEO
-99,SLO
-100,CRO
-101,GUY
-102,NZL
-103,POR
-104,PAR
-105,ANG
-106,VEN
-107,COL
-108,BAN
-109,PER
-110,ESA
-111,PUR
-112,UGA
-113,HON
-114,ECU
-115,TKM
-116,MRI
-117,SEY
-118,TCH
-119,LUX
-120,MTN
-121,CZE
-122,SKN
-123,TTO
-124,DOM
-125,VIN
-126,JAM
-127,LBR
-128,SUR
-129,NEP
-130,MGL
-131,AUT
-132,PLW
-133,LTU
-134,TOG
-135,NAM
-136,AHO
-137,ISL
-138,ASA
-139,SAM
-140,RWA
-141,DMA
-142,HAI
-143,MLT
-144,CYP
-145,GUI
-146,BIZ
-147,YMD
-148,KOR
-149,THA
-150,BER
-151,ANZ
-152,SCG
-153,SLE
-154,PNG
-155,YEM
-156,IOA
-157,OMA
-158,FIJ
-159,VAN
-160,MDA
-161,YUG
-162,BAH
-163,GUA
-164,SRB
-165,IVB
-166,MOZ
-167,CAF
-168,MAD
-169,MAL
-170,BIH
-171,GUM
-172,CAY
-173,SVK
-174,BAR
-175,GBS
-176,TLS
-177,COD
-178,GAB
-179,SMR
-180,LAO
-181,BOT
-182,ROT
-183,CAM
-184,PRK
-185,SOL
-186,SEN
-187,CPV
-188,CRT
-189,GEQ
-190,BOL
-191,SAA
-192,AND
-193,ANT
-194,ZIM
-195,GRN
-196,HKG
-197,LCA
-198,FSM
-199,MYA
-200,MAW
-201,ZAM
-202,RHO
-203,TPE
-204,STP
-205,MKD
-206,BOH
-207,TGA
-208,LIE
-209,MNE
-210,GAM
-211,COK
-212,ALB
-213,WIF
-214,SWZ
-215,BUR
-216,NBO
-217,BDI
-218,ARU
-219,NRU
-220,VNM
-221,VIE
-222,BHU
-223,MHL
-224,KIR
-225,UNK
-226,TUV
-227,NFL
-228,KOS
-229,SSD
-230,LES
+ID,noc,full_name,notes
+1,AFG,Afghanistan,
+2,AHO,Curacao,Netherlands Antilles
+3,ALB,Albania,
+4,ALG,Algeria,
+5,AND,Andorra,
+6,ANG,Angola,
+7,ANT,Antigua,Antigua and Barbuda
+8,ANZ,Australia,Australasia
+9,ARG,Argentina,
+10,ARM,Armenia,
+11,ARU,Aruba,
+12,ASA,American Samoa,
+13,AUS,Australia,
+14,AUT,Austria,
+15,AZE,Azerbaijan,
+16,BAH,Bahamas,
+17,BAN,Bangladesh,
+18,BAR,Barbados,
+19,BDI,Burundi,
+20,BEL,Belgium,
+21,BEN,Benin,
+22,BER,Bermuda,
+23,BHU,Bhutan,
+24,BIH,Bosnia and Herzegovina,
+25,BIZ,Belize,
+26,BLR,Belarus,
+27,BOH,Czech Republic,Bohemia
+28,BOL,Boliva,
+29,BOT,Botswana,
+30,BRA,Brazil,
+31,BRN,Bahrain,
+32,BRU,Brunei,
+33,BUL,Bulgaria,
+34,BUR,Burkina Faso,
+35,CAF,Central African Republic,
+36,CAM,Cambodia,
+37,CAN,Canada,
+38,CAY,Cayman Islands,
+39,CGO,Republic of Congo,
+40,CHA,Chad,
+41,CHI,Chile,
+42,CHN,China,
+43,CIV,Ivory Coast,
+44,CMR,Cameroon,
+45,COD,Democratic Republic of the Congo,
+46,COK,Cook Islands,
+47,COL,Colombia,
+48,COM,Comoros,
+49,CPV,Cape Verde,
+50,CRC,Costa Rica,
+51,CRO,Croatia,
+52,CRT,Greece,Crete
+53,CUB,Cuba,
+54,CYP,Cyprus,
+55,CZE,Czech Republic,
+56,DEN,Denmark,
+57,DJI,Djibouti,
+58,DMA,Dominica,
+59,DOM,Dominican Republic,
+60,ECU,Ecuador,
+61,EGY,Egypt,
+62,ERI,Eritrea,
+63,ESA,El Salvador,
+64,ESP,Spain,
+65,EST,Estonia,
+66,ETH,Ethiopia,
+67,EUN,Russia,
+68,FIJ,Fiji,
+69,FIN,Finland,
+70,FRA,France,
+71,FRG,Germany,
+72,FSM,Micronesia,
+73,GAB,Gabon,
+74,GAM,Gambia,
+75,GBR,UK,
+76,GBS,Guinea-Bissau,
+77,GDR,Germany,
+78,GEO,Georgia,
+79,GEQ,Equatorial Guinea,
+80,GER,Germany,
+81,GHA,Ghana,
+82,GRE,Greece,
+83,GRN,Grenada,
+84,GUA,Guatemala,
+85,GUI,Guinea,
+86,GUM,Guam,
+87,GUY,Guyana,
+88,HAI,Haiti,
+89,HKG,China,Hong Kong
+90,HON,Honduras,
+91,HUN,Hungary,
+92,INA,Indonesia,
+93,IND,India,
+94,IOA,Individual Olympic Athletes,Individual Olympic Athletes
+95,IRI,Iran,
+96,IRL,Ireland,
+97,IRQ,Iraq,
+98,ISL,Iceland,
+99,ISR,Israel,
+100,ISV,Virgin Islands US,Virgin Islands
+101,ITA,Italy,
+102,IVB,Virgin Islands British,
+103,JAM,Jamaica,
+104,JOR,Jordan,
+105,JPN,Japan,
+106,KAZ,Kazakhstan,
+107,KEN,Kenya,
+108,KGZ,Kyrgyzstan,
+109,KIR,Kiribati,
+110,KOR,South Korea,
+111,KOS,Kosovo,
+112,KSA,Saudi Arabia,
+113,KUW,Kuwait,
+114,LAO,Laos,
+115,LAT,Latvia,
+116,LBA,Libya,
+117,LBR,Liberia,
+118,LCA,Saint Lucia,
+119,LES,Lesotho,
+120,LIB,Lebanon,
+121,LIE,Liechtenstein,
+122,LTU,Lithuania,
+123,LUX,Luxembourg,
+124,MAD,Madagascar,
+125,MAL,Malaysia,
+126,MAR,Morocco,
+127,MAS,Malaysia,
+128,MAW,Malawi,
+129,MDA,Moldova,
+130,MDV,Maldives,
+131,MEX,Mexico,
+132,MGL,Mongolia,
+133,MHL,Marshall Islands,
+134,MKD,Macedonia,
+135,MLI,Mali,
+136,MLT,Malta,
+137,MNE,Montenegro,
+138,MON,Monaco,
+139,MOZ,Mozambique,
+140,MRI,Mauritius,
+141,MTN,Mauritania,
+142,MYA,Myanmar,
+143,NAM,Namibia,
+144,NBO,Malaysia,North Borneo
+145,NCA,Nicaragua,
+146,NED,Netherlands,
+147,NEP,Nepal,
+148,NFL,Canada,Newfoundland
+149,NGR,Nigeria,
+150,NIG,Niger,
+151,NOR,Norway,
+152,NRU,Nauru,
+153,NZL,New Zealand,
+154,OMA,Oman,
+155,PAK,Pakistan,
+156,PAN,Panama,
+157,PAR,Paraguay,
+158,PER,Peru,
+159,PHI,Philippines,
+160,PLE,Palestine,
+161,PLW,Palau,
+162,PNG,Papua New Guinea,
+163,POL,Poland,
+164,POR,Portugal,
+165,PRK,North Korea,
+166,PUR,Puerto Rico,
+167,QAT,Qatar,
+168,RHO,Zimbabwe,
+169,ROT,NA,Refugee Olympic Team
+170,ROU,Romania,
+171,RSA,South Africa,
+172,RUS,Russia,
+173,RWA,Rwanda,
+174,SAA,Germany,
+175,SAM,Samoa,
+176,SCG,Serbia,Serbia and Montenegro
+177,SEN,Senegal,
+178,SEY,Seychelles,
+179,SIN,Singapore,
+180,SKN,Saint Kitts,Turks and Caicos Islands
+181,SLE,Sierra Leone,
+182,SLO,Slovenia,
+183,SMR,San Marino,
+184,SOL,Solomon Islands,
+185,SOM,Somalia,
+186,SRB,Serbia,
+187,SRI,Sri Lanka,
+188,SSD,South Sudan,
+189,STP,Sao Tome and Principe,
+190,SUD,Sudan,
+191,SUI,Switzerland,
+192,SUR,Suriname,
+193,SVK,Slovakia,
+194,SWE,Sweden,
+195,SWZ,Swaziland,
+196,SYR,Syria,
+197,TAN,Tanzania,
+198,TCH,Czech Republic,
+199,TGA,Tonga,
+200,THA,Thailand,
+201,TJK,Tajikistan,
+202,TKM,Turkmenistan,
+203,TLS,Timor-Leste,
+204,TOG,Togo,
+205,TPE,Taiwan,
+206,TTO,Trinidad,Trinidad and Tobago
+207,TUN,Tunisia,
+208,TUR,Turkey,
+209,TUV,NA,Tuvalu
+210,UAE,United Arab Emirates,
+211,UAR,Syria,United Arab Republic
+212,UGA,Uganda,
+213,UKR,Ukraine,
+214,UNK,NA,Unknown
+215,URS,Russia,
+216,URU,Uruguay,
+217,USA,USA,
+218,UZB,Uzbekistan,
+219,VAN,Vanuatu,
+220,VEN,Venezuela,
+221,VIE,Vietnam,
+222,VIN,Saint Vincent,
+223,VNM,Vietnam,
+224,WIF,Trinidad,West Indies Federation
+225,YAR,Yemen,North Yemen
+226,YEM,Yemen,
+227,YMD,Yemen,South Yemen
+228,YUG,Serbia,Yugoslavia
+229,ZAM,Zambia,
+230,ZIM,Zimbabwe,
+231,SGP,Singapore,Singapore is not in the noc_regions.csv but it is in athlete_events.csv

@@ -35,8 +35,8 @@ DROP TABLE IF EXISTS NOCs;
 CREATE TABLE NOCs (
     NOC_ID INT NOT NULL,
     NOC text,
-		region text,
-		notes text
+    region text,
+    notes text
 );
 \copy NOCs from 'NOCs_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER
 
