@@ -4,7 +4,7 @@ CREATE TABLE athletes (
     athlete_name text,
     sex text
 );
-\copy athletes from 'athletes_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER 
+\copy athletes from 'athletes_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER
 
 
 DROP TABLE IF EXISTS main_events;
@@ -19,9 +19,9 @@ CREATE TABLE main_events (
 	oly_game_ID INT NOT NULL,
 	sport_category_ID INT NOT NULL,
 	detailed_event_ID INT NOT NULL,
-	medal_id INT 
+	medal_id INT
 );
-\copy main_events from 'main_events_table.csv' DELIMITER ',' CSV NULL 'NA' HEADER 
+\copy main_events from 'main_events_table.csv' DELIMITER ',' CSV NULL 'NA' HEADER
 
 
 DROP TABLE IF EXISTS teams;
@@ -29,14 +29,16 @@ CREATE TABLE teams (
     team_ID INT NOT NULL,
     Team text
 );
-\copy teams from 'teams_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER 
+\copy teams from 'teams_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER
 
 DROP TABLE IF EXISTS NOCs;
 CREATE TABLE NOCs (
-    NOCs_ID INT NOT NULL,
-    NOC text
+    NOC_ID INT NOT NULL,
+    NOC text,
+		region text,
+		notes text
 );
-\copy NOCs from 'NOCs_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER 
+\copy NOCs from 'NOCs_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER
 
 DROP TABLE IF EXISTS sport_categories;
 CREATE TABLE sport_categories (
@@ -66,4 +68,4 @@ CREATE TABLE olympic_games (
 	season text,
 	city text
 );
-\copy olympic_games from 'olympic_games_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER 
+\copy olympic_games from 'olympic_games_table.csv' DELIMITER ',' CSV NULL AS 'NULL' HEADER
