@@ -19,16 +19,28 @@ def get_games():
     game_list = json.loads(string_from_server)
     result_list = []
     for game_dictionary in game_list:
-        id = game_dictionary.get('id', '')
-        year = game_dictionary.get('year', '')
+        id = game_dictionary.get('id', 0)
+        year = game_dictionary.get('year', 0)
         season = game_dictionary.get('season', '')
 		city = game_dictionary.get('city', '')
         result_list.append({'id':id, 'year':year, 'season':season, 'city':city})
     return result_list
 
 def get_nocs():
+	url = f'{API_BASE_URL}/nocs'
+    data_from_server = urllib.request.urlopen(url).read()
+    string_from_server = data_from_server.decode('utf-8')
+    nocs_list = json.loads(string_from_server)
+    result_list = []
+    for nocs_dictionary in nocs_list:
+        abbreviation = game_dictionary.get('abbreviation', '')
+        name = game_dictionary.get('name', '')
+        result_list.append({'abbreviation':abbreviation, 'name':name})
+		    return result_list
 
-def get_medalists():
+def get_medalists_all(game_ID):
+
+def get_medalists_noc(game_ID, specific_noc):
 
 
 def main():
@@ -48,10 +60,13 @@ def main():
 		games_result = get_games()
 
 	if args.action == nocs:
-		get_nocs()
+		nocs_result = get_nocs()
 
 	if args.action == medalists:
-		get_medalists()
+		if args.specific_noc:
+			medalists_result = get_medalists_noc(args.game_ID, args.specific_noc)
+		else:
+			medalists_result = get_medalists_all(args.game_ID)
 
 if __name__ == '__main__':
     main(args)

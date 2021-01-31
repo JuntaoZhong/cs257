@@ -4,12 +4,17 @@ Schema file for olympics-api queries.
 
 #REQUEST: /games
 #SQL code for the first query:
+
 SELECT olympic_games.oly_game_ID, year, season, city
 FROM olympic_games
 ORDER BY year DESC;
 
 #REQUEST: /nocs
 #query:
+
+SELECT NOCs.NOC, NOCs.region
+FROM NOCs
+ORDER BY NOCs.region
 
 
 #REQUEST: /medalists/games/<games_id>?[noc=noc_abbreviation]
