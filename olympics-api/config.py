@@ -1,3 +1,3 @@
-database = 'olympics_test'
+database = 'olympics'
 user = 'postgres'
 password = ''
