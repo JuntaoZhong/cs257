@@ -46,6 +46,19 @@ def connect_database():
 def hello():
     return 'Hello, user of olympics database.'
 
+@app.route('/medalists/nocs')
+def get_nocs():
+    query = ["SELECT NOCs.NOC, NOCs.region"
+    "FROM NOCs","ORDER BY NOCs.region;"]
+    db_connection = connect_database()
+    query_result = list(execute_query(db_connection, query))
+    output_list_of_dicts = []
+    for row in query_result:
+        NOC, NOC_fullname = row
+        this_dict = {'abbreviation': NOC, 'name': NOC_fullname}
+        output_list_of_dicts.append(this_dict)
+    return json.dumps(output_list_of_dicts)
+
 @app.route('/medalists/games/<game_id>')
 def get_medalists_all(game_id):
     query = ["SELECT athletes.athlete_ID, athlete_name, sex, sport_category, detailed_event, medal",
