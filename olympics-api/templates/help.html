@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Olympics Database API reference (use Professor Ondich's formatting)</title>
+</head>
+<body>
+    <pre>Olympics Database API: endpoint reference 
+All responses are in JSON
+
+REQUEST: /
+RESPONSE:
+    A greeting from this API to you.
+
+REQUEST: /help
+RESPONSE:
+    This message
+
+REQUEST: /games
+RESPONSE: a JSON list of dictionaries, each of which represents one
+Olympic games, sorted by year. Each dictionary in this list will have
+the following fields.
+
+    id -- a unique identifier for the games in question
+    year -- the 4-digit year in which the games were held (e.g. 1992)
+    season -- (either "Summer" or "Winter")
+    city -- the host city (e.g. "Barcelona")
+
+REQUEST: /nocs
+RESPONSE: a JSON list of dictionaries, each of which represents one
+    National Olympic Committee, alphabetized by NOC abbreviation. Each dictionary
+    in this list will have the following fields.
+    
+    abbreviation -- ("USA", "MEX", "CAN", etc.)
+    name -- ("United States Of America", "Mexico", etc.)
+
+REQUEST: /medalists/games/<games_id>?[noc=noc_abbreviation]
+    RESPONSE: a JSON list of dictionaries, each representing one athlete
+    who earned a medal in the specified games. Each dictionary will have the
+    following fields.
+
+    athlete_id
+    athlete_name
+    athlete_sex
+    sport -- the sport (swimming)
+    event -- detailed sport event (man 100m freestyle swimming)
+    medal -- ("gold", "silver", or "bronze")
+
+    If "noc=noc_abbreviation" is present, this endpoint will return only those 
+    medalists who were on the specified NOC's team during the specified games.
+    </pre>
+</body>
+</html>
+

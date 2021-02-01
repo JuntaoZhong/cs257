@@ -1,10 +1,7 @@
 '''
-
 olympics-api.py
-Authors: Ann Beimers and Jimmy Zhong, 31 Jan, 2021
-
+Authors: Ann Beimers and Jimmy Zhong, 31 Jan, 2021 under Prof Jeff Ondich Software Design
 '''
-
 import json
 import urllib
 import sys
@@ -29,8 +26,7 @@ def execute_query(connection, query):
         exit()
 
 def connect_database():
-    ''' return a connection object to the postgres database, which is then used/passed down for querying
-    '''
+    ''' return a connection object to the postgres database, which is passed down for querying'''
     from config import database
     from config import user
     from config import password
@@ -46,6 +42,10 @@ def connect_database():
 def hello():
     return 'Hello, user of olympics database.'
 
+@app.route('/help')
+def get_help():
+    return flask.render_template('help.html')
+
 @app.route('/games')
 def get_games():
     query = ["SELECT olympic_games.oly_game_ID, year, season, city",
@@ -56,7 +56,7 @@ def get_games():
     output_list_of_dicts = []
     for row in query_result:
         game_id, year, season, city = row
-        this_dict = {'game_id': game_id, 'year': year, 'season': season, 'city': city}
+        this_dict = {'id': game_id, 'year': year, 'season': season, 'city': city}
         output_list_of_dicts.append(this_dict)
     return json.dumps(output_list_of_dicts)
 
