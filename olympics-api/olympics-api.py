@@ -46,6 +46,21 @@ def connect_database():
 def hello():
     return 'Hello, user of olympics database.'
 
+@app.route('/games')
+def get_games():
+	query = ["SELECT olympic_games.oly_game_ID, year, season, city",
+	"FROM olympic_games",
+	"ORDER BY year DESC;"]
+
+	db_connection = connect_database()
+	query_result = list(execute_query(db_connection, query))
+	output_list_of_dicts = []
+	for row in query_result:
+        game_id, year, season, city = row
+        this_dict = {'game_id': game_id, 'year': year, 'season': season, 'city': city}
+        output_list_of_dicts.append(this_dict)
+    return json.dumps(output_list_of_dicts)
+
 @app.route('/medalists/games/<game_id>')
 def get_medalists_all(game_id):
     query = ["SELECT athletes.athlete_ID, athlete_name, sex, sport_category, detailed_event, medal",
@@ -64,9 +79,9 @@ def get_medalists_all(game_id):
     "ELSE 4",
     "END;"]
 
-    possible_noc_contrain = flask.request.args.get('noc')
-    if possible_noc_contrain:
-        query.insert(3, "AND nocs.noc = '{}'".format(str(possible_noc_contrain)))
+    possible_noc_constraint = flask.request.args.get('noc')
+    if possible_noc_constraint:
+        query.insert(3, "AND nocs.noc = '{}'".format(str(possible_noc_constraint)))
     db_connection = connect_database()
     query_result = list(execute_query(db_connection, query))
     output_list_of_dicts = []
