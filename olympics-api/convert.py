@@ -52,7 +52,6 @@ def create_one_map_one_table(all_rows, option):
 			index = index + 1
 	return table, dictionary
 
-# noc_regions.csv
 class noc: 
 	def __init__(self, NOC, full_name = None, notes=None):
 		self.NOC = NOC
@@ -62,8 +61,10 @@ class noc:
 		return hash(self.NOC)
 	def __eq__(self, other):
 		return self.NOC == other.NOC
-
 def create_NOC_table(input_csv_file):
+	''' read in a separte noc_regions.csv file, and export table with 
+	NOC abbreviation, spelled out country name, and optional notes
+	'''
 	noc_table = []
 	noc_dict = {}
 	index = 1
