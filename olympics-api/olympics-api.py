@@ -40,7 +40,7 @@ def connect_database():
 
 @app.route('/')
 def hello():
-    return 'Hello, user of olympics database.'
+    return 'Hello, user of olympics database. \n See host/help for more interesting functions'
 
 @app.route('/help')
 def get_help():
@@ -48,6 +48,9 @@ def get_help():
 
 @app.route('/games')
 def get_games():
+    ''' return all Olympic games with id, year, seaon, city.
+    Sorted in descending order by year. for more, see \help
+    '''
     query = ["SELECT olympic_games.oly_game_ID, year, season, city",
     "FROM olympic_games",
     "ORDER BY year DESC;"]
@@ -62,6 +65,7 @@ def get_games():
 
 @app.route('/medalists/nocs')
 def get_nocs():
+    ''' Return all nocs and the fully spelled out nation/region names'''
     query = ["SELECT NOCs.NOC, NOCs.region", 
     "FROM NOCs",
     "ORDER BY NOCs.region;"]
@@ -76,6 +80,14 @@ def get_nocs():
 
 @app.route('/medalists/games/<game_id>')
 def get_medalists_all(game_id):
+    ''' 
+    if noc = [noc_3_letter_abbrivation] absent => return all athletes who get a medal, as well as the specific 
+    sport event that they get a medal on. (an athlete can appear multiple times, if they get multiple medals)
+    
+    if noc = [NOC] present => return all athletes who get a medal(s) and in the [noc] team
+    for more, see \help
+    '''
+
     query = ["SELECT athletes.athlete_ID, athlete_name, sex, sport_category, detailed_event, medal",
     "FROM athletes, medals, main_events, nocs, detailed_events, sport_categories, olympic_games",
     "WHERE main_events.oly_game_ID = " + str(game_id),
