@@ -47,13 +47,6 @@ def hello():
     return 'Hello, user of olympics database.'
 
 @app.route('/medalists/nocs')
-def get_nocs():
-    query = ["SELECT NOCs.NOC, NOCs.region"
-    "FROM NOCs","ORDER BY NOCs.region;"]
-    db_connection = connect_database()
-    query_result = list(execute_query(db_connection, query))
-    output_list_of_dicts = []
-    for row in query_result:
         NOC, NOC_fullname = row
         this_dict = {'abbreviation': NOC, 'name': NOC_fullname}
         output_list_of_dicts.append(this_dict)
@@ -77,9 +70,9 @@ def get_medalists_all(game_id):
     "ELSE 4",
     "END;"]
 
-    possible_noc_contrain = flask.request.args.get('noc')
-    if possible_noc_contrain:
-        query.insert(3, "AND nocs.noc = '{}'".format(str(possible_noc_contrain)))
+    possible_noc_constraint = flask.request.args.get('noc')
+    if possible_noc_constraint:
+        query.insert(3, "AND nocs.noc = '{}'".format(str(possible_noc_constraint)))
     db_connection = connect_database()
     query_result = list(execute_query(db_connection, query))
     output_list_of_dicts = []
