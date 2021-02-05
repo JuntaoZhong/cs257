@@ -1,0 +1,42 @@
+/* Jimmy Zhong's super simple html + css page under 
+prof Jeff Ondich. Carleton CS Software Design Feb 2021 */
+
+body {
+    margin: 0px;
+    overflow: hidden;
+}
+
+p{
+    padding: 10px 10px;
+    color: black;
+}
+
+#entire_page {
+    float: left;
+    width: 100vw;
+    height: 100vh;
+}
+
+#top_bar{
+    height : 20%;
+    width : 100%;
+    float:left;
+    font-size: 24pt;
+    background-color: rgba(255, 0, 0, 0.699);
+}
+
+#nav_vertical_bar{
+    height: 80%;
+    width: 20%;
+    float:left;
+    font-size: 24pt;
+    background-color: rgba(0, 255, 13, 0.699);
+}
+
+#main_content{
+    height: 80%;
+    width: 80%;
+    float:left;
+    font-size: 24pt;
+    background-color: rgba(0, 238, 255, 0.699);
+}
